@@ -1,0 +1,17 @@
+{
+  "name": "rahul-saini",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon backend/server",
+    "client": "npm run dev --prefix vite-project",
+    "dev": "concurrently \"npm run client\" \"npm run start\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.3.0"
+  }
+}
