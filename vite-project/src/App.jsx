@@ -8,6 +8,7 @@ import SignUp from './components/screens/SignUp';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import NavBar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import ProductData from './components/screens/ProductData';
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route index element={<Login/>}/>
         <Route path='/signUp' element={<SignUp/>}/>
         <Route path='/productForm' element={<ProductForm/>}/>
+        <Route path='/productData' element={<ProductData/>}/>
       </Route>
       <Route path='/navbar' element={<NavBar/>} />
       <Route path='/footer' element={<Footer/>} />

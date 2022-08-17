@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <div>
     <App />
     </div>
-    <div style={{position:"fixed",bottom:'0',justifyContent:"center",width:"95vw"}}>
+    <div style={{justifyContent:"center",width:"95vw"}}>
     <Footer/>
     </div>
    </BrowserRouter>
