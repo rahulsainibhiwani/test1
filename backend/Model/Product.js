@@ -5,7 +5,8 @@ const Product=new mongoose.Schema({
     subCategoryFK:{type:mongoose.Schema.Types.ObjectId,ref:"SubCategory"},
     sellerFK:{type:mongoose.Schema.Types.ObjectId,ref:"seller"},
     price:{type:Number,require:true},
-    brand:{type:String},
-    quantity:{type:Number}
+    brand:{type:String,require:true},
+    quantity:{type:Number,require:true},
+    image:{type:String,require:true}
 })
 export default new mongoose.model('Product',Product);

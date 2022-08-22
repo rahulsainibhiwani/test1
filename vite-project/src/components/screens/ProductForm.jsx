@@ -1,10 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import {Form,Col,Row,Button} from 'react-bootstrap'
 import { http } from '../../config/axiosConfig';
+import {useParams} from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const ProductForm = () => {
+  const ID=useParams().id;
   const [data,setData]=useState();
+  const [mode,setMode]=useState("CREATE");
+  const [productData,setProductData]=useState();
   const [category,setCategory]=useState();
   const [sCategory,setSCategory]=useState();
   const [sellerData,setSellerData]=useState();
@@ -12,6 +16,7 @@ const ProductForm = () => {
     const handleSubmit=(e)=>{
       e.preventDefault();
       let DATA=new FormData(e.target)
+     if(mode==="CREATE"){
       http.post('/product',DATA).then((res)=>{
         if(res.status===201){
           Swal.fire({
@@ -29,6 +34,27 @@ const ProductForm = () => {
           'error'
         )
       })
+     }else{
+      http.put(`/product/${ID}`,data).then((res)=>{
+        if(res.status===200){
+          Swal.fire({
+            position: 'top-bottom',
+            icon: 'success',
+            title: 'Product Data Updated Successfully',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+      }).catch((er)=>{
+        Swal.fire({
+          position: 'top-bottom',
+          icon: 'error',
+          title: `${er}`,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
+     }
     }
     const handleChange=(e)=>{
       setData({...data,[e.target.name]:e.target.value})
@@ -40,15 +66,21 @@ const ProductForm = () => {
       http('/subCategory').then((res)=>setSCategory(res.data.result)).catch((er)=>console.log("SUBCATEGORY ERROR=>",er)),
       http('/seller').then((res)=>setSellerData(res.data.result)).catch((er)=>console.log(er.message))
     },[])
+    useEffect(()=>{
+      http(`/product/${ID}`).then((res)=>{
+        setProductData(res.data)
+        setMode("UPDATE")
+      }).catch((er)=>console.log(er))
+    },[])
   return (
     <Form onSubmit={handleSubmit} onChange={handleChange}>
     <Form.Group className="mb-3">
     <Form.Label>Product Name</Form.Label>
-    <Form.Control placeholder="Enter Product Name" name='name'/>
+    <Form.Control value={productData?.name} placeholder="Enter Product Name" name='name'/>
   </Form.Group>
   <Form.Group className="mb-3">
     <Form.Label>Category</Form.Label>
-    <Form.Select name='category' >
+    <Form.Select  name='category' >
       <option >--Select a type--</option>
       {
         category?.map((c)=>(
@@ -69,15 +101,15 @@ const ProductForm = () => {
   </Form.Group>
   <Form.Group className="mb-3">
     <Form.Label>Price</Form.Label>
-    <Form.Control placeholder="Enter Price" name='price' type='number'/>
+    <Form.Control value={productData?.price} placeholder="Enter Price" name='price' type='number'/>
   </Form.Group>
   <Form.Group className="mb-3">
     <Form.Label>Brand</Form.Label>
-    <Form.Control placeholder="Enter Brand Name" name='brand' type='string'/>
+    <Form.Control value={productData?.brand} placeholder="Enter Brand Name" name='brand' type='string'/>
   </Form.Group>
   <Form.Group className="mb-3">
     <Form.Label>Quantity</Form.Label>
-    <Form.Control placeholder="Enter Total quantity" name='quantity' type='number'/>
+    <Form.Control value={productData?.quantity} placeholder="Enter Total quantity" name='quantity' type='number'/>
   </Form.Group>
   <Row>
     <Col>
@@ -104,6 +136,15 @@ const ProductForm = () => {
   </Form.Group>
     </Col>
   </Row>
+  <Form.Group className='mb-3'>
+    <Form.Label>Image</Form.Label>
+    <Form.Control
+    type='file'
+    name='image'
+    required
+
+    />
+  </Form.Group>
   <Button variant='dark' type='submit' >
     Submit
     </Button>

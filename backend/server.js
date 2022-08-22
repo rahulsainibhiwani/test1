@@ -9,13 +9,13 @@ import CategoryRoute from "./Routes/categoryRoutes.js";
 import SubCategoryRoute from "./Routes/subCategoryRoutes.js";
 import sellerRoute from "./Routes/sellerRoute.js";
 import productRoute from "./Routes/productRoute.js";
-const upload=multer();
+// const upload=multer();
 
 
 dotenv.config();
 const app=express();
 
-app.use(upload.array()); 
+// app.use(upload.array()); 
 app.use(cors())
 
 app.use(express.json())

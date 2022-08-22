@@ -1,0 +1,18 @@
+.delete{
+    color:rgb(255, 0, 0);
+    font-size:1.2rem;
+    box-shadow:0px 0px 5px rgba(157, 0, 0, 1);
+}
+.update{
+    box-sizing:content-box;
+    padding:1.5px;
+    color:orange;
+    font-size:1.1rem;
+    box-shadow:0px 0px 5px rgb(255, 102, 0);
+}
+.delete:hover{
+    opacity: 0.7;
+}
+.update:hover{
+    opacity: 0.7;
+}

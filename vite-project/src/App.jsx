@@ -23,6 +23,7 @@ function App() {
         <Route path='/signUp' element={<SignUp/>}/>
         <Route path='/productForm' element={<ProductForm/>}/>
         <Route path='/productData' element={<ProductData/>}/>
+        <Route path='/updateUser/:id' element={<ProductForm/>}/>
       </Route>
       <Route path='/navbar' element={<NavBar/>} />
       <Route path='/footer' element={<Footer/>} />
