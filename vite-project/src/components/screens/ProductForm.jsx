@@ -6,7 +6,6 @@ import Swal from 'sweetalert2'
 
 const ProductForm = () => {
   const ID=useParams().id;
-  const [data,setData]=useState();
   const [mode,setMode]=useState("CREATE");
   const [productData,setProductData]=useState();
   const [category,setCategory]=useState();
@@ -57,7 +56,7 @@ const ProductForm = () => {
      }
     }
     const handleChange=(e)=>{
-      setData({...data,[e.target.name]:e.target.value})
+      setProductData({...productData,[e.target.name]:e.target.value})
     }
     useEffect(()=>{
       http('/category').then((res)=>setCategory(res.data.result)).catch((er)=>console.log("CATEGORY ERROR=>",er))
@@ -94,7 +93,7 @@ const ProductForm = () => {
     <Form.Select name='subCategoryFK'>
      {
       sCategory?.map((s)=>(
-        s.categoryFK._id===data?.category?(<option value={s._id}>{s.subCategory}</option>):("")
+        s.categoryFK._id===productData?.category?(<option value={s._id}>{s.subCategory}</option>):("")
       ))
      }
     </Form.Select>
