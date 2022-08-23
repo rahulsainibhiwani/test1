@@ -16,3 +16,15 @@
 .update:hover{
     opacity: 0.7;
 }
+.imageContainer img{
+    height: 100px;
+}
+.tableRow td{
+    vertical-align: middle;
+}
+.p-button{
+    display: flex;
+    height: 116px;
+ align-items:center;
+ justify-content:space-evenly ;
+}

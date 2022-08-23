@@ -4,7 +4,7 @@ import { createProduct, deleteProduct, getProduct, getProducts, updateProduct } 
 const productRoute=express.Router();
 
 productRoute.post('/',upload.single("image"),createProduct)
-productRoute.put('/',upload.single("image"),updateProduct)
+productRoute.put('/:id',upload.single("image"),updateProduct)
 productRoute.get('/',getProducts);
 productRoute.get('/:id',getProduct);
 productRoute.delete('/:id',deleteProduct)

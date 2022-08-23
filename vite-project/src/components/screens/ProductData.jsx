@@ -47,6 +47,7 @@ const ProductData = () => {
       <thead>
         <tr>
           <th>SNo.</th>
+          <th>Image</th>
           <th>Product</th>
           <th>Brand</th>
           <th>Price</th>
@@ -57,12 +58,15 @@ const ProductData = () => {
         
         {
           productData?.map((p)=>(
-            <tr>
+            <tr className='tableRow'>
               <td>{total++}</td>
+              <td className='imageContainer'>
+                <img src={p.image} alt="" />
+              </td>
             <td>{p.name}</td>
             <td>{p.brand}</td>
             <td>{p.price}</td>
-            <td style={{display:"flex",justifyContent:"space-evenly"}}>
+            <td className='p-button'>
               <FaEdit className='update' onClick={()=>handleUpdate(p._id)} />
               <MdDelete className='delete' onClick={()=>handleDelete(p._id)} />
             </td>

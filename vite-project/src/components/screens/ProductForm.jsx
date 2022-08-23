@@ -34,7 +34,7 @@ const ProductForm = () => {
         )
       })
      }else{
-      http.put(`/product/${ID}`,data).then((res)=>{
+      http.put(`/product/${ID}`,productData).then((res)=>{
         if(res.status===200){
           Swal.fire({
             position: 'top-bottom',
@@ -144,8 +144,8 @@ const ProductForm = () => {
 
     />
   </Form.Group>
-  <Button variant='dark' type='submit' >
-    Submit
+  <Button variant={mode==="UPDATE"?"warning":"success"} type='submit' >
+    {mode==="UPDATE"?"Update Data":"Create Data"}
     </Button>
   </Form>
   )
